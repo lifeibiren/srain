@@ -19,8 +19,6 @@ iconsdir = datadir / 'icons'
 podir =meson.source_root () / 'po'
 gettext_package = meson.project_name()
 
-dependency('gtk+-3.0', version: '>= 3.22.0'),
-
 subdir('data')
 subdir('po')
 subdir('src')

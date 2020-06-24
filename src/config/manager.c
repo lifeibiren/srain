@@ -28,7 +28,7 @@
 #include <string.h>
 
 #include "config/config.h"
-#include "./password.h"
+#include "./password2.h"
 
 #include "log.h"
 #include "meta.h"
