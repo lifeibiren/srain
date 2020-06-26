@@ -1,3 +1,5 @@
+configure_file(output: 'meta.h', configuration: meta)
+
 srcs = [
   'config/manager.c',
   'config/password.c',
