@@ -1,22 +1,26 @@
 desktop_conf = configuration_data()
-desktop_conf.set('icon', application_id)
-desktop_conf.set('application_id', application_id)
+desktop_conf.set('app_id', app_id)
+desktop_conf.set('app_pretty_name', app_pretty_name)
+desktop_conf.set('app_generic_name', app_generic_name)
+desktop_conf.set('app_desc', app_desc)
+desktop_conf.set('app_exec', app_exec)
+desktop_conf.set('icon', app_id)
 desktop = i18n.merge_file(
   type: 'desktop',
   input: configure_file(
-    input: 'org.gnome.Todo.desktop.in.in',
-    output: 'org.gnome.Todo.desktop.in',
+    input: 'srain.desktop.in.in',
+    output: 'srain.desktop.in',
     configuration: desktop_conf
   ),
-  output: '@0@.desktop'.format(application_id),
+  output: '@0@.desktop'.format(app_id),
   po_dir: po_dir,
   install: true,
-  install_dir: join_paths(gnome_todo_datadir, 'applications')
+  install_dir: join_paths(data_dir, 'applications')
 )
 
 install_data(
-  'org.gnome.todo.gschema.xml',
-  install_dir: gnome_todo_schemadir
+  'srain.gschema.xml',
+  # install_dir: gnome_todo_schemadir
 )
 
 subdir('metainfo')

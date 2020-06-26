@@ -1,4 +1,18 @@
-configure_file(output: 'meta.h', configuration: meta)
+# Generate header file which contains meta info macro
+meta_h = configuration_data()
+meta_h.set_quoted('GETTEXT_PACKAGE', app_name)
+meta_h.set_quoted('PACKAGE', app_name)
+meta_h.set_quoted('PACKAGE_NAME', app_name)
+meta_h.set_quoted('PACKAGE_VERSION', meson.project_version())
+meta_h.set_quoted('PACKAGE_DESC', app_desc)
+meta_h.set_quoted('PACKAGE_APPID', app_id)
+meta_h.set_quoted('PACKAGE_BUILDID', app_id)
+meta_h.set_quoted('PACKAGE_WEBSITE', app_url)
+meta_h.set_quoted('PACKAGE_BUGREPORT', app_bugreport)
+meta_h.set_quoted('PACKAGE_COPYRIGHT_DATES', '2016 - 2020')
+meta_h.set_quoted('PACKAGE_DATA_DIR', pkg_data_dir)
+meta_h.set_quoted('PACKAGE_CONFIG_DIR', sys_conf_dir)
+configure_file(output: 'meta.h', configuration: meta_h)
 
 srcs = [
   'config/manager.c',
@@ -91,7 +105,7 @@ deps = [
   dependency('libsoup-2.4'),
   dependency('openssl'),
   dependency('libsecret-1'),
-  ]
+]
 
 incdirs = [
   include_directories('inc'),
@@ -104,6 +118,6 @@ incdirs = [
   include_directories('sui'),
 ]
 
-executable(meson.project_name(), srcs,
+executable(app_exec, srcs,
   include_directories: incdirs,
   dependencies: deps)
